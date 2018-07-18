@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 #define SizeX 5
-#define SizeY 5
+#define SizeY 7
 
 void solution1();
 
@@ -28,7 +28,8 @@ void readMap(int map[SizeX][SizeY], char path[]){
     FILE *in;
     in = fopen(path,"r");
     int n,m;
-    fscanf(in,"%i %i",&n,&m);
+    fscanf(in,"%i",&n);
+    fscanf(in,"%i",&m);
 
     for(int i = 0; i<n; i++){
         for (int j = 0; j < m; ++j) {
@@ -66,10 +67,10 @@ void solution1(){
     } else{
         a[0][0]=map[0][0];
         for(j=1;j<SizeY;j++){
-            a[0][j]=map[0][j]*map[0][j-1];
+            a[0][j]=map[0][j]*(a[0][j-1]==0)?0:map[0][j];
         }
         for(i=1;i<SizeX;i++){
-            a[i][0] = map[i][0]*map[i-1][0];
+            a[i][0] = map[i][0]*(a[i-1][0]==0)?0:map[i][0];
             for(j=1;j<SizeY;j++){
                 a[i][j] = (a[i][j-1] + a[i-1][j])*map[i][j];
             }
