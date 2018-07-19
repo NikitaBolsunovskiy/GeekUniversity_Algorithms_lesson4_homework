@@ -117,9 +117,7 @@ int lcs_length(char *a,char *b){
     int m = strlen(b) + 1;
 
     printf("Первая строка: %s\n",a);
-    printf("Длина: %d\n",n);
     printf("Вторая строка: %s\n",b);
-    printf("Длина: %d\n",m);
 
     int matrix[n][m];
 
@@ -133,20 +131,18 @@ int lcs_length(char *a,char *b){
 
     for (int i = 1; i < n; ++i) {
         for (int j = 1; j < m; ++j) {
-            if(a[i-1]=='\0'||b[j-1]=='\0') {
-                matrix[i][j] = 0;
+            if(a[i-1]==b[j-1]){
+                matrix[i][j] = 1 + matrix[i-1][j-1];
             } else {
-                if (a[i - 1] == b[j - 1]) {
-                    matrix[i][j] = 1 + matrix[i - 1][j - 1];
-                } else {
-                    matrix[i][j] = max(matrix[i][j - 1], matrix[i - 1][j]);
-                }
+                matrix[i][j] = max(matrix[i-1][j],matrix[i][j-1]);
             }
         }
     }
 
-    //puts("Рассчитанная карта чисел:");
-    //print(n,m,matrix);
+    puts("Рассчитанная карта чисел:");
+    printMatrix(n,m,matrix,a,b);
+
+    return matrix[n-1][m-1];
 
 }
 
@@ -156,7 +152,9 @@ void solution2(){
 
     int lcs_l = 0;
 
-    lcs_l = lcs_length("geekminds","geekbrains");
+    lcs_l = lcs_length("algorithms","knowledge");
+
+    printf("Длина наибольшей общей последовательности: %d\n",lcs_l);
 
 
 }
