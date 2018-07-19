@@ -3,8 +3,8 @@
 
 #define SizeX 5
 #define SizeY 7
-#define ChessBoardSizeX 8
-#define ChessBoardSizeY 8
+#define ChessBoardSizeX 12
+#define ChessBoardSizeY 12
 
 int board[ChessBoardSizeX][ChessBoardSizeY];
 
